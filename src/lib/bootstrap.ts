@@ -143,33 +143,42 @@ async function seedDemo() {
     log("demo merch added");
   }
 
+  // Starter album. Resumable: if an earlier run stopped part-way, the missing photos are added.
   const [{ n: albumCount }] = await db.select({ n: count() }).from(schema.albums);
-  if (albumCount === 0) {
-    const dir = process.env.SEED_DIR ?? path.join(process.cwd(), "seed", "images");
-    let files: string[] = [];
-    try { files = (await fs.readdir(dir)).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort(); } catch { /* none */ }
-    if (!files.length) return;
-    const captions: Record<string, string> = {
-      "trail-companions": "Two pals, one trail, a whole lot of mountain.",
-      "green-valley": "That moment the valley opens up below you.",
-      "snowy-ridges": "Last light on the ridges.",
-      "winding-meadow-path": "Wildflowers and a path that keeps going.",
-      "forest-trail": "Into the green, one step at a time.",
-      "ridge-walker": "Walking the knife edge.",
-    };
-    const [album] = await db.insert(schema.albums).values({
+  let [album] = await db.select().from(schema.albums).where(eq(schema.albums.slug, "trail-moments")).limit(1);
+  if (albumCount > 0 && !album) return; // the team has its own albums; leave them alone
+  const dir = process.env.SEED_DIR ?? path.join(process.cwd(), "seed", "images");
+  let files: string[] = [];
+  try { files = (await fs.readdir(dir)).filter((f) => /\.(jpe?g|png|webp)$/i.test(f)).sort(); } catch { /* none */ }
+  if (!files.length) return;
+  const captions: Record<string, string> = {
+    "trail-companions": "Two pals, one trail, a whole lot of mountain.",
+    "green-valley": "That moment the valley opens up below you.",
+    "snowy-ridges": "Last light on the ridges.",
+    "winding-meadow-path": "Wildflowers and a path that keeps going.",
+    "forest-trail": "Into the green, one step at a time.",
+    "ridge-walker": "Walking the knife edge.",
+  };
+  if (!album) {
+    [album] = await db.insert(schema.albums).values({
       slug: "trail-moments", title: "Trail Moments", date: new Date(Date.now() - 21 * 864e5),
       location: "Past Peak Pals adventures",
       story: "A few of our favourite frames from past hikes: big views, quiet forest paths and the friends who made every climb lighter. More albums land here after every event.",
       guideNote: "Every photo here is real. No filters needed.",
     }).returning();
-    let cover: string | null = null;
-    for (const [i, f] of files.entries()) {
-      const key = f.replace(/\.[^.]+$/, "");
-      const row = await saveImage(await fs.readFile(path.join(dir, f)), { albumId: album.id, caption: captions[key] ?? null, alt: captions[key] ?? "Peak Pals hike photo", sortOrder: i });
-      if (key === "trail-companions" || !cover) cover = row.id;
-    }
-    await db.update(schema.albums).set({ coverMediaId: cover }).where(eq(schema.albums.id, album.id));
-    log(`starter album added with ${files.length} photos`);
   }
+  const existing = await db.select({ sortOrder: schema.media.sortOrder }).from(schema.media).where(eq(schema.media.albumId, album.id));
+  const done = new Set(existing.map((e) => e.sortOrder));
+  let added = 0;
+  for (const [i, f] of files.entries()) {
+    if (done.has(i)) continue;
+    const key = f.replace(/\.[^.]+$/, "");
+    const row = await saveImage(await fs.readFile(path.join(dir, f)), { albumId: album.id, caption: captions[key] ?? null, alt: captions[key] ?? "Peak Pals hike photo", sortOrder: i });
+    if (key === "trail-companions" || !album.coverMediaId) {
+      await db.update(schema.albums).set({ coverMediaId: row.id }).where(eq(schema.albums.id, album.id));
+      album.coverMediaId = row.id;
+    }
+    added++;
+  }
+  if (added) log(`starter album: added ${added} photo${added === 1 ? "" : "s"}`);
 }

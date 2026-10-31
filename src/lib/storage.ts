@@ -12,8 +12,15 @@ export function uploadDir() {
 export async function putFile(relPath: string, data: Buffer, contentType: string): Promise<string> {
   if (useBlob()) {
     const { put } = await import("@vercel/blob");
-    const r = await put(`uploads/${relPath}`, data, { access: "public", contentType, addRandomSuffix: false, cacheControlMaxAge: 60 * 60 * 24 * 365 });
-    return r.url;
+    try {
+      const r = await put(`uploads/${relPath}`, data, { access: "public", contentType, addRandomSuffix: false, cacheControlMaxAge: 60 * 60 * 24 * 365 });
+      return r.url;
+    } catch (e) {
+      if (e instanceof Error && /private/i.test(e.message)) {
+        throw new Error("Your Vercel Blob store is set to PRIVATE. Photos must be public: in Vercel > Storage, delete this Blob store, create a new one with Public access, connect it to the project and redeploy.");
+      }
+      throw e;
+    }
   }
   const full = path.join(uploadDir(), relPath);
   await fs.mkdir(path.dirname(full), { recursive: true });
