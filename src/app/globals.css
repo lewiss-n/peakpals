@@ -1,0 +1,89 @@
+@import "tailwindcss";
+@import "@fontsource/quicksand/500.css";
+@import "@fontsource/quicksand/600.css";
+@import "@fontsource/quicksand/700.css";
+@import "@fontsource/nunito-sans/400.css";
+@import "@fontsource/nunito-sans/600.css";
+@import "@fontsource/nunito-sans/700.css";
+@import "@fontsource/nunito-sans/800.css";
+@import "@fontsource/caveat/700.css";
+
+@theme {
+  --color-forest: #355a35;
+  --color-forest-dark: #2a4a2a;
+  --color-night: #1f3320;
+  --color-orange: #e85d04;
+  --color-gold: #ffba08;
+  --color-sand: #fbd569;
+  --color-cream: #f7efca;
+  --color-olive: #899536;
+  --color-brown: #8c3703;
+  --color-paper: #fbf7e6;
+  --color-moss: #4b5a47;
+
+  --font-display: "Quicksand", "Arial Rounded MT Bold", Arial, sans-serif;
+  --font-sans: "Nunito Sans", Arial, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", cursive;
+
+  --shadow-sticker: 5px 5px 0 0 #1f3320;
+  --shadow-sticker-lg: 8px 8px 0 0 #1f3320;
+  --radius-blob: 2rem;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-kenburns: kenburns 22s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+}
+
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+@keyframes kenburns { from { transform: scale(1.12) } to { transform: scale(1) } }
+@keyframes float { 0%,100% { transform: translateY(0) rotate(-6deg) } 50% { transform: translateY(-8px) rotate(-3deg) } }
+@keyframes rise { from { opacity: 0; transform: translateY(28px) } to { opacity: 1; transform: none } }
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper text-night font-sans antialiased; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3, h4 { @apply font-display font-bold text-forest; line-height: 1.08; letter-spacing: -0.01em; }
+  :focus-visible { outline: 3px solid var(--color-orange); outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: var(--color-gold); color: var(--color-night); }
+  input, select, textarea { font: inherit; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .kicker { @apply font-display text-xs font-bold uppercase tracking-[0.22em] text-brown; }
+  .hand { font-family: var(--font-hand); font-weight: 700; }
+  .btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-night px-6 py-3 font-display text-base font-bold whitespace-nowrap transition-[transform,box-shadow,background-color] duration-150 select-none; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-sticker); }
+  .btn:active { transform: translate(0, 0); box-shadow: none; }
+  .btn-primary { @apply bg-forest text-cream; }
+  .btn-gold { @apply bg-gold text-night; }
+  .btn-ghost { @apply bg-paper text-night; }
+  .btn-cream { @apply bg-cream text-night; }
+  .btn[disabled], .btn[aria-disabled="true"] { @apply cursor-not-allowed opacity-60; transform: none; box-shadow: none; }
+  .sticker { @apply rounded-[1.75rem] border-2 border-night bg-white; box-shadow: var(--shadow-sticker); }
+  .sticker-hover { @apply transition-[transform,box-shadow] duration-200; }
+  .sticker-hover:hover { transform: translate(-3px, -3px) rotate(-0.4deg); box-shadow: var(--shadow-sticker-lg); }
+  .topo { background-image: url("/patterns/topo.svg"); background-size: 640px; }
+  .topo-light { background-image: url("/patterns/topo-light.svg"); background-size: 640px; }
+  .field { @apply w-full rounded-2xl border-2 border-night/80 bg-white px-4 py-3 text-night placeholder:text-moss/70 focus:border-forest focus:outline-none focus:ring-4 focus:ring-gold/50; min-height: 3rem; }
+  .label { @apply mb-1.5 block font-display text-sm font-bold text-forest; }
+  .chip { @apply inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-night/25 bg-white px-4 py-2 font-display text-sm font-bold text-night transition-colors hover:border-forest; }
+  .chip[aria-current="true"], .chip[data-active="true"] { @apply border-forest bg-forest text-cream; }
+  .tape { @apply pointer-events-none absolute -top-3 left-1/2 z-10 h-6 w-24 -translate-x-1/2 -rotate-3 border border-night/15 bg-olive/55; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* keep the footer clear of the mobile booking bar */
+@media (max-width: 1023px) {
+  body:has(.mobile-book-bar) footer > div:last-child { padding-bottom: 5.5rem; }
+}
