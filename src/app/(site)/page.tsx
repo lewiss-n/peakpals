@@ -61,13 +61,6 @@ export default async function Home() {
           </div>
           {next && (
             <div className="relative">
-              <div className="absolute -right-4 -top-20 z-10 hidden size-32 sm:block" aria-hidden>
-                <svg viewBox="0 0 120 120" className="size-full animate-spin-slow text-gold">
-                  <defs><path id="ring" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0" /></defs>
-                  <text className="font-display" fontSize="12.5" fontWeight="700" letterSpacing="3.2" fill="currentColor"><textPath href="#ring"></textPath></text>
-                </svg>
-                <img src="/brand/peak-pals-icon-app.svg" alt="" className="absolute inset-[30%] size-[40%]" />
-              </div>
               <div className="sticker relative bg-cream p-6">
                 <p className="kicker">Next departure</p>
                 <h2 className="mt-1 text-3xl">{next.event.title}</h2>

@@ -32,7 +32,6 @@
   --animate-marquee: marquee 38s linear infinite;
   --animate-kenburns: kenburns 22s ease-out both;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-spin-slow: spin 24s linear infinite;
 }
 
 @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
