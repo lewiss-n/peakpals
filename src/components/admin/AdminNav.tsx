@@ -23,7 +23,7 @@ export function AdminNav() {
         const active = n.href === "/admin" ? path === "/admin" : path.startsWith(n.href);
         return (
           <Link key={n.href} href={n.href} aria-current={active ? "page" : undefined}
-            className={`flex shrink-0 items-center gap-3 rounded-2xl px-3 py-2.5 font-display font-bold transition-colors ${active ? "bg-cream text-forest" : "text-cream hover:bg-cream/10"}`}>
+            className={`flex shrink-0 items-center gap-3 rounded-2xl px-3 py-2.5 font-display font-bold transition-colors ${active ? "bg-sky text-blue" : "text-sky hover:bg-sky/10"}`}>
             <Icon name={n.icon} className="size-5" />{n.label}
           </Link>
         );

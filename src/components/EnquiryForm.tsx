@@ -16,8 +16,8 @@ export function EnquiryForm() {
   if (state.ok) {
     return (
       <div className="mt-6 text-center" role="status">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full border-2 border-night bg-olive text-white"><Icon name="check" className="size-9" strokeWidth={3} /></div>
-        <p className="mt-4 font-display text-2xl font-bold text-forest">Enquiry received!</p>
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full border-2 border-navy bg-blue text-white"><Icon name="check" className="size-9" strokeWidth={3} /></div>
+        <p className="mt-4 font-display text-2xl font-bold text-blue">Enquiry received!</p>
         <p className="mt-2">{state.message}</p>
       </div>
     );
@@ -26,7 +26,7 @@ export function EnquiryForm() {
     <div>
       <label className="label" htmlFor={k}>{label}</label>
       <input id={k} name={k} className="field" value={v[k]} onChange={(e) => setV({ ...v, [k]: e.target.value })} aria-invalid={!!err[k]} {...props} />
-      {err[k] && <p className="mt-1 text-sm font-semibold text-brown">{err[k]}</p>}
+      {err[k] && <p className="mt-1 text-sm font-semibold text-ember">{err[k]}</p>}
     </div>
   );
   return (
@@ -57,15 +57,15 @@ export function EnquiryForm() {
         </div>
       </fieldset>
       <div>
-        <label className="label" htmlFor="message">Tell us more <span className="font-normal text-moss">(optional)</span></label>
+        <label className="label" htmlFor="message">Tell us more <span className="font-normal text-slate">(optional)</span></label>
         <textarea id="message" name="message" rows={4} className="field" value={v.message} onChange={(e) => setV({ ...v, message: e.target.value })} placeholder="Goals for the day, fitness levels, location ideas…" />
       </div>
       <label className="flex gap-3 text-sm">
-        <input type="checkbox" name="dataConsent" className="mt-0.5 size-5 shrink-0 accent-forest" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        <input type="checkbox" name="dataConsent" className="mt-0.5 size-5 shrink-0 accent-blue" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         <span>I agree to Peak Pals using these details to respond to my enquiry, as described in the <Link href="/privacy" className="underline">privacy policy</Link>.</span>
       </label>
-      {err.dataConsent && <p className="-mt-2 text-sm font-semibold text-brown">{err.dataConsent}</p>}
-      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-brown/10 p-3 font-semibold text-brown">{state.message}</p>}
+      {err.dataConsent && <p className="-mt-2 text-sm font-semibold text-ember">{err.dataConsent}</p>}
+      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-ember/10 p-3 font-semibold text-ember">{state.message}</p>}
       <button className="btn btn-primary" disabled={pending}>{pending ? "Sending…" : "Send enquiry"}</button>
     </form>
   );

@@ -15,12 +15,12 @@ export function TrendChart({ data, series }: { data: Record<string, number | str
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full" role="img" aria-label={`Daily ${series.map((s) => s.label.toLowerCase()).join(" and ")}`}>
         {ticks.map((t) => (
           <g key={t}>
-            <line x1={pl} x2={W - pr} y1={y(t)} y2={y(t)} stroke="#1F3320" strokeOpacity=".08" />
-            <text x={pl - 6} y={y(t) + 4} textAnchor="end" fontSize="11" fill="#4B5A47">{t}</text>
+            <line x1={pl} x2={W - pr} y1={y(t)} y2={y(t)} stroke="#0E2348" strokeOpacity=".08" />
+            <text x={pl - 6} y={y(t) + 4} textAnchor="end" fontSize="11" fill="#4A5568">{t}</text>
           </g>
         ))}
         {data.map((d, i) => (i % labelEvery === 0 || i === data.length - 1) && (
-          <text key={i} x={x(i)} y={H - 8} textAnchor="middle" fontSize="11" fill="#4B5A47">{fmt(String(d.day))}</text>
+          <text key={i} x={x(i)} y={H - 8} textAnchor="middle" fontSize="11" fill="#4A5568">{fmt(String(d.day))}</text>
         ))}
         {series.map((s) => {
           const pts = data.map((d, i) => `${x(i).toFixed(1)},${y(Number(d[s.key]) || 0).toFixed(1)}`);
@@ -46,14 +46,14 @@ export function TrendChart({ data, series }: { data: Record<string, number | str
 
 export function BarList({ items, empty = "No data yet" }: { items: { label: string; value: number; href?: string }[]; empty?: string }) {
   const max = Math.max(1, ...items.map((i) => i.value));
-  if (!items.length) return <p className="py-6 text-center text-sm text-moss">{empty}</p>;
+  if (!items.length) return <p className="py-6 text-center text-sm text-slate">{empty}</p>;
   return (
     <ul className="flex flex-col gap-2">
       {items.map((i) => (
         <li key={i.label} className="relative flex items-center justify-between gap-3 overflow-hidden rounded-xl px-3 py-2 text-sm">
-          <span className="absolute inset-y-0 left-0 rounded-xl bg-olive/20" style={{ width: `${(i.value / max) * 100}%` }} aria-hidden />
+          <span className="absolute inset-y-0 left-0 rounded-xl bg-trail/20" style={{ width: `${(i.value / max) * 100}%` }} aria-hidden />
           <span className="relative truncate font-semibold">{i.label}</span>
-          <span className="relative font-display font-bold text-forest">{i.value.toLocaleString()}</span>
+          <span className="relative font-display font-bold text-blue">{i.value.toLocaleString()}</span>
         </li>
       ))}
     </ul>
@@ -62,7 +62,7 @@ export function BarList({ items, empty = "No data yet" }: { items: { label: stri
 
 export function Donut({ items }: { items: { label: string; value: number; color: string }[] }) {
   const total = items.reduce((a, b) => a + b.value, 0);
-  if (!total) return <p className="py-6 text-center text-sm text-moss">No data yet</p>;
+  if (!total) return <p className="py-6 text-center text-sm text-slate">No data yet</p>;
   let acc = 0;
   const r = 40, c = 2 * Math.PI * r;
   return (
@@ -76,7 +76,7 @@ export function Donut({ items }: { items: { label: string; value: number; color:
         })}
       </svg>
       <ul className="flex flex-col gap-1.5 text-sm">
-        {items.map((i) => <li key={i.label} className="flex items-center gap-2"><span className="size-3 rounded-full" style={{ background: i.color }} /><span className="font-semibold capitalize">{i.label}</span><span className="text-moss">{Math.round((i.value / total) * 100)}%</span></li>)}
+        {items.map((i) => <li key={i.label} className="flex items-center gap-2"><span className="size-3 rounded-full" style={{ background: i.color }} /><span className="font-semibold capitalize">{i.label}</span><span className="text-slate">{Math.round((i.value / total) * 100)}%</span></li>)}
       </ul>
     </div>
   );

@@ -18,21 +18,21 @@ export function MerchOrderForm({ productId, price, sizes, colors, name: productN
   const [v, setV] = useState({ size: "", color: colors.length === 1 ? colors[0] : "", quantity: 1, name: "", email: "", phone: "", delivery: "PICKUP_EVENT", address: "", notes: "" });
   const [consent, setConsent] = useState(false);
   const err = state.errors ?? {};
-  const E = (k: string) => err[k] && <p className="mt-1 text-sm font-semibold text-brown">{err[k]}</p>;
+  const E = (k: string) => err[k] && <p className="mt-1 text-sm font-semibold text-ember">{err[k]}</p>;
 
   if (state.ok && state.data) {
     const d = state.data as { reference: string; total: number; quantity: number };
     return (
       <div className="text-center" role="status">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full border-2 border-night bg-olive text-white"><Icon name="check" className="size-9" strokeWidth={3} /></div>
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full border-2 border-navy bg-blue text-white"><Icon name="check" className="size-9" strokeWidth={3} /></div>
         <h2 className="mt-4 text-3xl">Order received!</h2>
         <p className="mt-2">{d.quantity} × <b>{productName}</b></p>
-        <div className="mt-4 rounded-2xl border-2 border-dashed border-night/30 bg-cream p-4 text-left">
-          <p className="font-display text-sm font-bold text-moss">Your order reference</p>
-          <p className="font-display text-3xl font-bold tracking-wider text-forest">{d.reference}</p>
+        <div className="mt-4 rounded-2xl border-2 border-dashed border-navy/30 bg-sky p-4 text-left">
+          <p className="font-display text-sm font-bold text-slate">Your order reference</p>
+          <p className="font-display text-3xl font-bold tracking-wider text-blue">{d.reference}</p>
           <p className="mt-3 text-sm">To confirm your order, pay <b>{kes(d.total)}</b>{v.delivery !== "PICKUP_EVENT" ? " plus the delivery fee we confirm with you" : ""} via {site.payment.method} <b>{site.payment.paybill}</b>, using {site.payment.account} as the account number.</p>
         </div>
-        <p className="hand mt-4 text-2xl text-brown">Wear it to the summit!</p>
+        <p className="hand mt-4 text-2xl text-ember">Wear it to the summit!</p>
         <Link href="/shop" className="btn btn-ghost mt-4">Back to the shop</Link>
       </div>
     );
@@ -71,9 +71,9 @@ export function MerchOrderForm({ productId, price, sizes, colors, name: productN
       <div>
         <span className="label" id="qty-label">Quantity</span>
         <div className="inline-flex items-center gap-2" role="group" aria-labelledby="qty-label">
-          <button type="button" className="inline-flex size-11 items-center justify-center rounded-full border-2 border-night bg-paper disabled:opacity-40" onClick={() => setV({ ...v, quantity: Math.max(1, v.quantity - 1) })} disabled={v.quantity <= 1} aria-label="One fewer"><Icon name="minus" className="size-4" /></button>
+          <button type="button" className="inline-flex size-11 items-center justify-center rounded-full border-2 border-navy bg-paper disabled:opacity-40" onClick={() => setV({ ...v, quantity: Math.max(1, v.quantity - 1) })} disabled={v.quantity <= 1} aria-label="One fewer"><Icon name="minus" className="size-4" /></button>
           <output className="w-10 text-center font-display text-2xl font-bold" aria-live="polite">{v.quantity}</output>
-          <button type="button" className="inline-flex size-11 items-center justify-center rounded-full border-2 border-night bg-paper disabled:opacity-40" onClick={() => setV({ ...v, quantity: Math.min(20, v.quantity + 1) })} disabled={v.quantity >= 20} aria-label="One more"><Icon name="plus" className="size-4" /></button>
+          <button type="button" className="inline-flex size-11 items-center justify-center rounded-full border-2 border-navy bg-paper disabled:opacity-40" onClick={() => setV({ ...v, quantity: Math.min(20, v.quantity + 1) })} disabled={v.quantity >= 20} aria-label="One more"><Icon name="plus" className="size-4" /></button>
           <input type="hidden" name="quantity" value={v.quantity} />
         </div>
         {E("quantity")}
@@ -91,9 +91,9 @@ export function MerchOrderForm({ productId, price, sizes, colors, name: productN
         <legend className="label">How would you like to get it?</legend>
         <div className="flex flex-col gap-2">
           {DELIVERY.map((o) => (
-            <label key={o.v} className={`flex cursor-pointer gap-3 rounded-2xl border-2 p-3 ${v.delivery === o.v ? "border-forest bg-cream" : "border-night/15 bg-white"}`}>
-              <input type="radio" name="delivery" value={o.v} className="mt-1 size-5 accent-forest" checked={v.delivery === o.v} onChange={() => setV({ ...v, delivery: o.v })} />
-              <span><span className="block font-display font-bold text-forest">{o.t}</span><span className="text-sm text-moss">{o.d}</span></span>
+            <label key={o.v} className={`flex cursor-pointer gap-3 rounded-2xl border-2 p-3 ${v.delivery === o.v ? "border-blue bg-sky" : "border-navy/15 bg-white"}`}>
+              <input type="radio" name="delivery" value={o.v} className="mt-1 size-5 accent-blue" checked={v.delivery === o.v} onChange={() => setV({ ...v, delivery: o.v })} />
+              <span><span className="block font-display font-bold text-blue">{o.t}</span><span className="text-sm text-slate">{o.d}</span></span>
             </label>
           ))}
         </div>
@@ -101,15 +101,15 @@ export function MerchOrderForm({ productId, price, sizes, colors, name: productN
       {v.delivery !== "PICKUP_EVENT" && (
         <div><label className="label" htmlFor="m-address">Delivery address or area</label><textarea id="m-address" name="address" rows={2} className="field" autoComplete="street-address" value={v.address} onChange={(e) => setV({ ...v, address: e.target.value })} />{E("address")}</div>
       )}
-      <div><label className="label" htmlFor="m-notes">Notes <span className="font-normal text-moss">(optional)</span></label><input id="m-notes" name="notes" className="field" value={v.notes} onChange={(e) => setV({ ...v, notes: e.target.value })} /></div>
+      <div><label className="label" htmlFor="m-notes">Notes <span className="font-normal text-slate">(optional)</span></label><input id="m-notes" name="notes" className="field" value={v.notes} onChange={(e) => setV({ ...v, notes: e.target.value })} /></div>
       <label className="flex gap-3 text-sm">
-        <input type="checkbox" name="dataConsent" className="mt-0.5 size-5 shrink-0 accent-forest" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        <input type="checkbox" name="dataConsent" className="mt-0.5 size-5 shrink-0 accent-blue" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         <span>I agree to Peak Pals using these details to process my order, as described in the <Link href="/privacy" className="underline" target="_blank">privacy policy</Link>.</span>
       </label>
       {E("dataConsent")}
-      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-brown/10 p-3 font-semibold text-brown">{state.message}</p>}
-      <div className="flex items-center justify-between gap-3 border-t-2 border-night pt-4">
-        <div><p className="text-sm text-moss">Total</p><p className="font-display text-2xl font-bold text-forest">{kes(price * v.quantity)}</p></div>
+      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-ember/10 p-3 font-semibold text-ember">{state.message}</p>}
+      <div className="flex items-center justify-between gap-3 border-t-2 border-navy pt-4">
+        <div><p className="text-sm text-slate">Total</p><p className="font-display text-2xl font-bold text-blue">{kes(price * v.quantity)}</p></div>
         <button className="btn btn-primary" disabled={pending}>{pending ? "Placing order…" : "Place order"}</button>
       </div>
     </form>

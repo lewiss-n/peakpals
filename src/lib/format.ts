@@ -24,9 +24,9 @@ export const ACTIVITY = {
 } as const;
 
 export const DIFFICULTY = {
-  EASY: { label: "Easy", peaks: 1, cls: "bg-olive text-white" },
-  MODERATE: { label: "Moderate", peaks: 2, cls: "bg-gold text-night" },
-  DIFFICULT: { label: "Difficult", peaks: 3, cls: "bg-brown text-white" },
+  EASY: { label: "Easy", peaks: 1, cls: "bg-trail text-navy" },
+  MODERATE: { label: "Moderate", peaks: 2, cls: "bg-orange text-navy" },
+  DIFFICULT: { label: "Difficult", peaks: 3, cls: "bg-navy text-white" },
 } as const;
 
 export const ZONE = {

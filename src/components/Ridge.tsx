@@ -1,5 +1,5 @@
 /** Layered mountain-ridge divider between sections. */
-export function Ridge({ from = "#FBF7E6", back = "#899536", front = "#355A35", className = "" }: { from?: string; back?: string; front?: string; className?: string }) {
+export function Ridge({ from = "#F7FAFE", back = "#5B8BD9", front = "#1B4DA0", className = "" }: { from?: string; back?: string; front?: string; className?: string }) {
   return (
     <div className={`relative -mb-px h-16 w-full sm:h-24 ${className}`} style={{ background: from }} aria-hidden>
       <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="absolute inset-0 size-full">

@@ -1,6 +1,7 @@
 /** Business details shown across the site. Edit these before launch. */
 export const site = {
   name: "Peak Pals Adventures",
+  legalName: "Peak Pals Adventures Ltd", // registered company name, used in legal text and the footer
   tagline: "Conquer your peak",
   url: process.env.SITE_URL ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
   city: "Nairobi, Kenya",

@@ -7,7 +7,7 @@ export function LegalPage({ title, updated, children }: { title: string; updated
         <div className="sticker mt-8 bg-white p-6 sm:p-10 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-2xl [&_li]:ml-5 [&_li]:list-disc [&_p]:mb-3 [&_ul]:mb-3 [&_ul]:space-y-1">
           {children}
         </div>
-        <p className="mt-4 text-sm text-moss">This page is a plain-language starting point. Please have it reviewed by a qualified advocate before launch.</p>
+        <p className="mt-4 text-sm text-slate">This page is a plain-language starting point. Please have it reviewed by a qualified advocate before launch.</p>
       </div>
     </div>
   );

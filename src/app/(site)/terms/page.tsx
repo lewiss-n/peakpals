@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Terms & conditions" };
 export default function Terms() {
   return (
     <LegalPage title="Terms & conditions" updated="October 2026">
-      <p>These terms apply to every event booked with {site.name}. By booking, you accept them for yourself and everyone in your booking.</p>
+      <p>These terms apply to every event booked with {site.legalName} (&quot;Peak Pals&quot;). By booking, you accept them for yourself and everyone in your booking.</p>
       <h2>Age requirement</h2>
       <p>All events are for participants aged <b>13 and over</b>. Participants aged 13 to 17 must have written consent from a parent or legal guardian, given during booking, and may be asked to attend with an adult.</p>
       <h2>Bookings and payment</h2>

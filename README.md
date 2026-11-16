@@ -158,4 +158,4 @@ seed/images/         starter album photos
 
 ## Brand
 
-Colours, fonts and logo usage follow the Peak Pals brand guidelines: Forest `#355A35`, Sunset Orange `#E85D04`, Savanna Gold `#FFBA08`, Sand `#FBD569`, Canvas Cream `#F7EFCA`, Acacia Olive `#899536`, Earth Brown `#8C3703`, Night Forest `#1F3320` for text. Fonts are Quicksand (headings), Nunito Sans (body) and Caveat (handwritten accents), all self-hosted.
+Colours, fonts and logo usage follow the Peak Pals brand guidelines (v2): Peak Blue `#1B4DA0` and Sunrise Orange `#FF6A00` as primaries, with Night Navy `#0E2348` for text, Ember `#C2410C` for small orange text, Trail Blue `#5B8BD9`, Sky `#EAF1FB` and Glow `#FFF1E5` tints, and Slate `#4A5568` for muted text. Orange buttons always use navy text. Fonts are Quicksand (headings), Nunito Sans (body) and Caveat (handwritten accents), all self-hosted.

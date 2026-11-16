@@ -5,7 +5,7 @@ import { changePassword, createAdminUser } from "@/lib/actions/admin";
 import type { FormState } from "@/lib/actions/public";
 
 function Msg({ s }: { s: FormState }) {
-  return s.message ? <p role="status" className={`rounded-2xl p-3 font-semibold ${s.ok ? "bg-olive/15" : "bg-brown/10 text-brown"}`}>{s.message}</p> : null;
+  return s.message ? <p role="status" className={`rounded-2xl p-3 font-semibold ${s.ok ? "bg-trail/15" : "bg-ember/10 text-ember"}`}>{s.message}</p> : null;
 }
 
 export function SettingsForms() {

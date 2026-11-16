@@ -21,7 +21,7 @@ export default async function AlbumPage({ params }: { params: Params }) {
   return (
     <div className="topo">
       <section className="wrap pb-8 pt-12">
-        <Link href="/memories" className="inline-flex items-center gap-2 font-display font-bold text-forest hover:text-orange"><Icon name="arrow" className="size-4 rotate-180" />All memories</Link>
+        <Link href="/memories" className="inline-flex items-center gap-2 font-display font-bold text-blue hover:text-ember"><Icon name="arrow" className="size-4 rotate-180" />All memories</Link>
         <div className="mt-6 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
             <p className="kicker">{fmtDate(album.date, { day: "numeric", month: "long", year: "numeric" })}{album.location ? ` · ${album.location}` : ""}</p>
@@ -29,9 +29,9 @@ export default async function AlbumPage({ params }: { params: Params }) {
             {album.story && <p className="mt-4 max-w-2xl text-lg">{album.story}</p>}
           </div>
           {album.guideNote && (
-            <div className="sticker -rotate-1 border-dashed bg-cream p-5">
-              <p className="font-display text-sm font-bold text-moss">Guide&apos;s note</p>
-              <p className="hand mt-1 text-3xl leading-tight text-brown">{album.guideNote}</p>
+            <div className="sticker -rotate-1 border-dashed bg-sky p-5">
+              <p className="font-display text-sm font-bold text-slate">Guide&apos;s note</p>
+              <p className="hand mt-1 text-3xl leading-tight text-ember">{album.guideNote}</p>
             </div>
           )}
         </div>

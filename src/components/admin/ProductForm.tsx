@@ -44,8 +44,8 @@ export function ProductForm({ initial }: { initial?: V }) {
     <div>
       <label className="label" htmlFor={k}>{label}</label>
       <input id={k} name={k} className="field" value={String(v[k])} onChange={set(k)} aria-invalid={!!err[k]} {...props} />
-      {hint && !err[k] && <p className="mt-1 text-sm text-moss">{hint}</p>}
-      {err[k] && <p className="mt-1 text-sm font-semibold text-brown">{err[k]}</p>}
+      {hint && !err[k] && <p className="mt-1 text-sm text-slate">{hint}</p>}
+      {err[k] && <p className="mt-1 text-sm font-semibold text-ember">{err[k]}</p>}
     </div>
   );
 
@@ -82,18 +82,18 @@ export function ProductForm({ initial }: { initial?: V }) {
         </div>
         {field("colors", "Colours (comma separated)", { placeholder: "Forest, Cream" }, "Leave blank if there's only one colour.")}
         <div className="md:col-span-2 flex flex-col gap-3">
-          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="inStock" className="size-5 accent-forest" checked={v.inStock} onChange={(e) => setV({ ...v, inStock: e.target.checked })} />In stock (customers can order it)</label>
-          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="featured" className="size-5 accent-forest" checked={v.featured} onChange={(e) => setV({ ...v, featured: e.target.checked })} />Featured (shown first and on the home page)</label>
-          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="published" className="size-5 accent-forest" checked={v.published} onChange={(e) => setV({ ...v, published: e.target.checked })} />Visible in the shop</label>
+          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="inStock" className="size-5 accent-blue" checked={v.inStock} onChange={(e) => setV({ ...v, inStock: e.target.checked })} />In stock (customers can order it)</label>
+          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="featured" className="size-5 accent-blue" checked={v.featured} onChange={(e) => setV({ ...v, featured: e.target.checked })} />Featured (shown first and on the home page)</label>
+          <label className="flex items-center gap-3 font-semibold"><input type="checkbox" name="published" className="size-5 accent-blue" checked={v.published} onChange={(e) => setV({ ...v, published: e.target.checked })} />Visible in the shop</label>
         </div>
       </section>
 
       <section className="sticker flex flex-col gap-5 bg-white p-6">
         <h2 className="text-2xl">Photos</h2>
-        <p className="text-sm text-moss">Upload real photos of the item (JPG, PNG or WebP, up to 25 MB each). The first photo is the main one. Without photos, the shop shows a branded illustration instead:</p>
+        <p className="text-sm text-slate">Upload real photos of the item (JPG, PNG or WebP, up to 25 MB each). The first photo is the main one. Without photos, the shop shows a branded illustration instead:</p>
         {!v.images.length && (
           <div className="flex flex-wrap items-end gap-4">
-            <div className="w-36 overflow-hidden rounded-2xl border-2 border-night"><ProductArt art={v.art} className="block w-full" /></div>
+            <div className="w-36 overflow-hidden rounded-2xl border-2 border-navy"><ProductArt art={v.art} className="block w-full" /></div>
             <div>
               <label className="label" htmlFor="art">Illustration style</label>
               <select id="art" name="art" className="field" value={v.art} onChange={set("art")}>{ARTS.map(([a, l]) => <option key={a} value={a}>{l}</option>)}</select>
@@ -104,17 +104,17 @@ export function ProductForm({ initial }: { initial?: V }) {
         {v.images.length > 0 && (
           <ul className="flex flex-wrap gap-4">
             {v.images.map((im, i) => (
-              <li key={im.id} className="w-40 overflow-hidden rounded-2xl border-2 border-night bg-cream">
+              <li key={im.id} className="w-40 overflow-hidden rounded-2xl border-2 border-navy bg-sky">
                 <div className="relative aspect-square">
                   <img src={im.url} alt={`Photo ${i + 1}`} className="size-full object-cover" />
-                  {i === 0 && <span className="absolute left-2 top-2 rounded-full bg-gold px-2 py-0.5 font-display text-xs font-bold">Main</span>}
+                  {i === 0 && <span className="absolute left-2 top-2 rounded-full bg-orange px-2 py-0.5 font-display text-xs font-bold">Main</span>}
                 </div>
                 <div className="flex items-center justify-between px-2 py-1.5">
                   <div className="flex">
                     <button type="button" className="inline-flex size-9 items-center justify-center rounded-full hover:bg-white disabled:opacity-30" onClick={() => move(i, -1)} disabled={i === 0} aria-label={`Move photo ${i + 1} earlier`}><Icon name="arrow" className="size-4 rotate-180" /></button>
                     <button type="button" className="inline-flex size-9 items-center justify-center rounded-full hover:bg-white disabled:opacity-30" onClick={() => move(i, 1)} disabled={i === v.images.length - 1} aria-label={`Move photo ${i + 1} later`}><Icon name="arrow" className="size-4" /></button>
                   </div>
-                  <button type="button" className="inline-flex size-9 items-center justify-center rounded-full text-brown hover:bg-white" onClick={() => setV({ ...v, images: v.images.filter((x) => x.id !== im.id) })} aria-label={`Remove photo ${i + 1}`}><Icon name="trash" className="size-4" /></button>
+                  <button type="button" className="inline-flex size-9 items-center justify-center rounded-full text-ember hover:bg-white" onClick={() => setV({ ...v, images: v.images.filter((x) => x.id !== im.id) })} aria-label={`Remove photo ${i + 1}`}><Icon name="trash" className="size-4" /></button>
                 </div>
               </li>
             ))}
@@ -124,7 +124,7 @@ export function ProductForm({ initial }: { initial?: V }) {
           <label className="btn btn-ghost cursor-pointer"><Icon name="upload" className="size-5" />{busy ? `Uploading ${busy}…` : "Upload photos"}
             <input type="file" multiple accept="image/jpeg,image/png,image/webp,image/avif" className="sr-only" disabled={busy > 0} onChange={(e) => { if (e.target.files) upload(e.target.files); e.target.value = ""; }} />
           </label>
-          {upErr && <p className="text-sm font-semibold text-brown">{upErr}</p>}
+          {upErr && <p className="text-sm font-semibold text-ember">{upErr}</p>}
         </div>
       </section>
 
@@ -133,7 +133,7 @@ export function ProductForm({ initial }: { initial?: V }) {
         {field("sortOrder", "Display order", { type: "number", min: 0 }, "Lower numbers show first.")}
       </section>
 
-      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-brown/10 p-3 font-semibold text-brown">{state.message}</p>}
+      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-ember/10 p-3 font-semibold text-ember">{state.message}</p>}
       <div className="flex gap-3">
         <button className="btn btn-primary" disabled={pending || busy > 0}>{pending ? "Saving…" : v.id ? "Save changes" : "Add to shop"}</button>
         <Link href="/admin/merch" className="btn btn-ghost">Cancel</Link>

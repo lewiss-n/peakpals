@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Privacy policy" };
 export default function Privacy() {
   return (
     <LegalPage title="Privacy policy" updated="October 2026">
-      <p>{site.name} (&quot;we&quot;, &quot;us&quot;) respects your privacy. This policy explains what personal data we collect, why, and your rights under Kenya&apos;s Data Protection Act, 2019.</p>
+      <p>{site.legalName} (&quot;Peak Pals&quot;, &quot;we&quot;, &quot;us&quot;) respects your privacy. This policy explains what personal data we collect, why, and your rights under Kenya&apos;s Data Protection Act, 2019.</p>
       <h2>What we collect</h2>
       <ul>
         <li><b>Bookings:</b> your name, email, phone number, the names and ages of participants, any notes you share (such as medical or dietary needs) and, for participants under 18, a parent or guardian&apos;s name, phone number and consent.</li>
@@ -29,7 +29,7 @@ export default function Privacy() {
       <h2>Your rights</h2>
       <p>You can ask to access, correct or delete your personal data, object to its use or withdraw consent (including photo consent) at any time. Contact us at <a className="underline" href={`mailto:${site.email}`}>{site.email}</a>. You can also complain to the Office of the Data Protection Commissioner.</p>
       <h2>Contact</h2>
-      <p>Data controller: {site.name}, {site.city}. Email: {site.email}. Phone: {site.phone}.</p>
+      <p>Data controller: {site.legalName}, {site.city}. Email: {site.email}. Phone: {site.phone}.</p>
     </LegalPage>
   );
 }

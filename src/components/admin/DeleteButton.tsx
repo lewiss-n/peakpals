@@ -11,12 +11,12 @@ export function DeleteButton({ action, id, label, confirmText, extra }: { action
       {extra && Object.entries(extra).map(([k, v]) => <input key={k} type="hidden" name={k} value={v} />)}
       {armed ? (
         <>
-          <span className="text-sm font-semibold text-brown">{confirmText}</span>
-          <button className="btn !min-h-10 !border-brown !bg-brown !py-2 !text-white">Yes, delete</button>
+          <span className="text-sm font-semibold text-ember">{confirmText}</span>
+          <button className="btn !min-h-10 !border-ember !bg-ember !py-2 !text-white">Yes, delete</button>
           <button type="button" className="btn btn-ghost !min-h-10 !py-2" onClick={() => setArmed(false)}>Cancel</button>
         </>
       ) : (
-        <button type="button" className="btn btn-ghost !min-h-10 !py-2 text-brown" onClick={() => setArmed(true)}><Icon name="trash" className="size-4" />{label}</button>
+        <button type="button" className="btn btn-ghost !min-h-10 !py-2 text-ember" onClick={() => setArmed(true)}><Icon name="trash" className="size-4" />{label}</button>
       )}
     </form>
   );

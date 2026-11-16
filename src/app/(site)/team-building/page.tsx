@@ -8,13 +8,13 @@ export const metadata: Metadata = { title: "Team building", description: "Outdoo
 export default function TeamBuildingPage() {
   return (
     <div className="topo">
-      <section className="relative isolate overflow-hidden border-b-2 border-night bg-night">
+      <section className="relative isolate overflow-hidden border-b-2 border-navy bg-navy">
         <img src="/images/green-valley.webp" alt="A wide green valley between rocky mountains" className="absolute inset-0 -z-10 size-full object-cover opacity-60" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-night to-night/20" />
-        <div className="wrap py-24 text-cream sm:py-32">
-          <p className="hand text-3xl text-sand">Out of the office, onto the trail</p>
-          <h1 className="mt-2 max-w-3xl text-5xl !text-cream sm:text-7xl">Team building that actually builds teams</h1>
-          <p className="mt-5 max-w-xl text-lg text-cream/90">A shared climb does more for a team than any trust fall. We design days that fit your group&apos;s fitness, size and goals.</p>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy to-navy/20" />
+        <div className="wrap py-24 text-sky sm:py-32">
+          <p className="hand text-3xl text-orange">Out of the office, onto the trail</p>
+          <h1 className="mt-2 max-w-3xl text-5xl !text-sky sm:text-7xl">Team building that actually builds teams</h1>
+          <p className="mt-5 max-w-xl text-lg text-sky/90">A shared climb does more for a team than any trust fall. We design days that fit your group&apos;s fitness, size and goals.</p>
         </div>
       </section>
       <section className="wrap grid gap-12 py-16 lg:grid-cols-[1fr_520px]">
@@ -30,11 +30,11 @@ export default function TeamBuildingPage() {
               <li key={x.t} className="sticker bg-paper p-5">
                 <Icon name={x.i} className="size-9 text-orange" />
                 <h3 className="mt-3 text-2xl">{x.t}</h3>
-                <p className="mt-1 text-moss">{x.d}</p>
+                <p className="mt-1 text-slate">{x.d}</p>
               </li>
             ))}
           </ul>
-          <p className="hand mt-10 text-3xl text-brown">Tell us about your crew and we&apos;ll put together a proposal.</p>
+          <p className="hand mt-10 text-3xl text-ember">Tell us about your crew and we&apos;ll put together a proposal.</p>
         </div>
         <div className="sticker bg-white p-6 sm:p-8">
           <h2 className="text-3xl">Plan your team day</h2>

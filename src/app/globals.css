@@ -9,24 +9,24 @@
 @import "@fontsource/caveat/700.css";
 
 @theme {
-  --color-forest: #355a35;
-  --color-forest-dark: #2a4a2a;
-  --color-night: #1f3320;
-  --color-orange: #e85d04;
-  --color-gold: #ffba08;
-  --color-sand: #fbd569;
-  --color-cream: #f7efca;
-  --color-olive: #899536;
-  --color-brown: #8c3703;
-  --color-paper: #fbf7e6;
-  --color-moss: #4b5a47;
+  /* Peak Pals brand palette (brand guidelines v2) */
+  --color-blue: #1B4DA0;       /* Peak Blue: primary */
+  --color-blue-deep: #123672;
+  --color-orange: #FF6A00;     /* Sunrise Orange: primary accent, CTAs (navy text) */
+  --color-navy: #0E2348;       /* Night Navy: body text, dark sections */
+  --color-ember: #C2410C;      /* accessible orange for small text */
+  --color-trail: #5B8BD9;      /* Trail Blue: accent */
+  --color-sky: #EAF1FB;        /* light blue tint */
+  --color-glow: #FFF1E5;       /* warm orange tint */
+  --color-paper: #F7FAFE;      /* page background */
+  --color-slate: #4A5568;      /* muted text */
 
   --font-display: "Quicksand", "Arial Rounded MT Bold", Arial, sans-serif;
   --font-sans: "Nunito Sans", Arial, sans-serif;
   --font-hand: "Caveat", "Segoe Print", cursive;
 
-  --shadow-sticker: 5px 5px 0 0 #1f3320;
-  --shadow-sticker-lg: 8px 8px 0 0 #1f3320;
+  --shadow-sticker: 5px 5px 0 0 #0E2348;
+  --shadow-sticker-lg: 8px 8px 0 0 #0E2348;
   --radius-blob: 2rem;
 
   --animate-marquee: marquee 38s linear infinite;
@@ -41,35 +41,35 @@
 
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { @apply bg-paper text-night font-sans antialiased; font-size: 17px; line-height: 1.6; }
-  h1, h2, h3, h4 { @apply font-display font-bold text-forest; line-height: 1.08; letter-spacing: -0.01em; }
+  body { @apply bg-paper text-navy font-sans antialiased; font-size: 17px; line-height: 1.6; }
+  h1, h2, h3, h4 { @apply font-display font-bold text-blue; line-height: 1.08; letter-spacing: -0.01em; }
   :focus-visible { outline: 3px solid var(--color-orange); outline-offset: 3px; border-radius: 6px; }
-  ::selection { background: var(--color-gold); color: var(--color-night); }
+  ::selection { background: var(--color-orange); color: var(--color-navy); }
   input, select, textarea { font: inherit; }
 }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
-  .kicker { @apply font-display text-xs font-bold uppercase tracking-[0.22em] text-brown; }
+  .kicker { @apply font-display text-xs font-bold uppercase tracking-[0.22em] text-ember; }
   .hand { font-family: var(--font-hand); font-weight: 700; }
-  .btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-night px-6 py-3 font-display text-base font-bold whitespace-nowrap transition-[transform,box-shadow,background-color] duration-150 select-none; }
+  .btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-navy px-6 py-3 font-display text-base font-bold whitespace-nowrap transition-[transform,box-shadow,background-color] duration-150 select-none; }
   .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-sticker); }
   .btn:active { transform: translate(0, 0); box-shadow: none; }
-  .btn-primary { @apply bg-forest text-cream; }
-  .btn-gold { @apply bg-gold text-night; }
-  .btn-ghost { @apply bg-paper text-night; }
-  .btn-cream { @apply bg-cream text-night; }
+  .btn-primary { @apply bg-blue text-white; }
+  .btn-orange { @apply bg-orange text-navy; }
+  .btn-ghost { @apply bg-paper text-navy; }
+  .btn-light { @apply bg-sky text-navy; }
   .btn[disabled], .btn[aria-disabled="true"] { @apply cursor-not-allowed opacity-60; transform: none; box-shadow: none; }
-  .sticker { @apply rounded-[1.75rem] border-2 border-night bg-white; box-shadow: var(--shadow-sticker); }
+  .sticker { @apply rounded-[1.75rem] border-2 border-navy bg-white; box-shadow: var(--shadow-sticker); }
   .sticker-hover { @apply transition-[transform,box-shadow] duration-200; }
   .sticker-hover:hover { transform: translate(-3px, -3px) rotate(-0.4deg); box-shadow: var(--shadow-sticker-lg); }
   .topo { background-image: url("/patterns/topo.svg"); background-size: 640px; }
   .topo-light { background-image: url("/patterns/topo-light.svg"); background-size: 640px; }
-  .field { @apply w-full rounded-2xl border-2 border-night/80 bg-white px-4 py-3 text-night placeholder:text-moss/70 focus:border-forest focus:outline-none focus:ring-4 focus:ring-gold/50; min-height: 3rem; }
-  .label { @apply mb-1.5 block font-display text-sm font-bold text-forest; }
-  .chip { @apply inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-night/25 bg-white px-4 py-2 font-display text-sm font-bold text-night transition-colors hover:border-forest; }
-  .chip[aria-current="true"], .chip[data-active="true"] { @apply border-forest bg-forest text-cream; }
-  .tape { @apply pointer-events-none absolute -top-3 left-1/2 z-10 h-6 w-24 -translate-x-1/2 -rotate-3 border border-night/15 bg-olive/55; }
+  .field { @apply w-full rounded-2xl border-2 border-navy/80 bg-white px-4 py-3 text-navy placeholder:text-slate/70 focus:border-blue focus:outline-none focus:ring-4 focus:ring-orange/40; min-height: 3rem; }
+  .label { @apply mb-1.5 block font-display text-sm font-bold text-blue; }
+  .chip { @apply inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-navy/25 bg-white px-4 py-2 font-display text-sm font-bold text-navy transition-colors hover:border-blue; }
+  .chip[aria-current="true"], .chip[data-active="true"] { @apply border-blue bg-blue text-white; }
+  .tape { @apply pointer-events-none absolute -top-3 left-1/2 z-10 h-6 w-24 -translate-x-1/2 -rotate-3 border border-navy/15 bg-trail/55; }
 }
 
 @supports (animation-timeline: view()) {

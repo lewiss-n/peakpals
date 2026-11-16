@@ -34,36 +34,36 @@ export default function ActivitiesPage() {
         <div className="wrap pb-12 pt-14">
           <p className="kicker">Activities</p>
           <h1 className="mt-2 max-w-3xl text-5xl sm:text-6xl">Find the way of moving that moves you</h1>
-          <p className="mt-4 max-w-2xl text-lg text-moss">Whether you want a big summit, a sweaty Saturday session or a challenge that fits around work, there&apos;s a place for you here.</p>
+          <p className="mt-4 max-w-2xl text-lg text-slate">Whether you want a big summit, a sweaty Saturday session or a challenge that fits around work, there&apos;s a place for you here.</p>
           <nav className="mt-6 flex flex-wrap gap-2" aria-label="Jump to">
             {BLOCKS.map((b) => <a key={b.id} href={`#${b.id}`} className="chip">{b.title}</a>)}
           </nav>
         </div>
       </section>
       {BLOCKS.map((b, i) => (
-        <section key={b.id} id={b.id} className={`scroll-mt-24 ${i % 2 ? "bg-cream" : ""}`}>
+        <section key={b.id} id={b.id} className={`scroll-mt-24 ${i % 2 ? "bg-sky" : ""}`}>
           <div className={`wrap grid items-center gap-10 py-16 lg:grid-cols-2 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
             <div className="relative">
               <img src={b.img} alt={b.alt} loading="lazy" className={`sticker aspect-[4/3] w-full object-cover ${i % 2 ? "rotate-1" : "-rotate-1"}`} />
-              <span className="absolute -bottom-5 left-6 flex size-20 items-center justify-center rounded-full border-2 border-night bg-gold text-night shadow-[4px_4px_0_#1F3320]"><Icon name={b.icon} className="size-10" /></span>
+              <span className="absolute -bottom-5 left-6 flex size-20 items-center justify-center rounded-full border-2 border-navy bg-orange text-navy shadow-[4px_4px_0_#0E2348]"><Icon name={b.icon} className="size-10" /></span>
             </div>
             <div>
               <p className="kicker">{b.kicker}</p>
               <h2 className="mt-2 text-4xl sm:text-5xl">{b.title}</h2>
               <p className="mt-4 text-lg">{b.body}</p>
               <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                {b.points.map((p) => <li key={p} className="flex items-center gap-2 rounded-2xl border-2 border-night/15 bg-white px-4 py-3 font-semibold"><Icon name="check" className="size-5 text-forest" strokeWidth={2.6} />{p}</li>)}
+                {b.points.map((p) => <li key={p} className="flex items-center gap-2 rounded-2xl border-2 border-navy/15 bg-white px-4 py-3 font-semibold"><Icon name="check" className="size-5 text-blue" strokeWidth={2.6} />{p}</li>)}
               </ul>
               <Link href={b.href} className="btn btn-primary mt-7">{b.cta} <Icon name="arrow" /></Link>
             </div>
           </div>
         </section>
       ))}
-      <Ridge from="#FBF7E6" back="#FBD569" front="#FFBA08" />
-      <section className="bg-gold">
+      <Ridge from="#F7FAFE" back="#FFF1E5" front="#FF6A00" />
+      <section className="bg-orange">
         <div className="wrap flex flex-col items-start gap-5 py-14 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-4xl !text-night">Bringing a group?</h2>
+            <h2 className="text-4xl !text-navy">Bringing a group?</h2>
             <p className="mt-2 max-w-xl text-lg">We design team-building days for offices, clubs and friend groups: hikes, bootcamps or a mix of both.</p>
           </div>
           <Link href="/team-building" className="btn btn-primary">Plan a team day</Link>

@@ -5,7 +5,7 @@ import { fmtDate } from "@/lib/format";
 
 export const metadata = { title: "Enquiries" };
 const LABEL = { NEW: "New", CONTACTED: "Contacted", CLOSED: "Closed" } as const;
-const TONE = { NEW: "bg-gold/30", CONTACTED: "bg-olive/25", CLOSED: "bg-night/10" } as const;
+const TONE = { NEW: "bg-orange/30", CONTACTED: "bg-trail/25", CLOSED: "bg-navy/10" } as const;
 
 export default async function Enquiries() {
   const rows = await db.select().from(schema.enquiries).orderBy(desc(schema.enquiries.createdAt)).limit(300);
@@ -17,11 +17,11 @@ export default async function Enquiries() {
           <li key={e.id} className="sticker bg-white p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0">
-                <p className="text-sm text-moss">{fmtDate(e.createdAt, { day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</p>
-                <p className="font-display text-xl font-bold text-forest">{e.organisation}</p>
+                <p className="text-sm text-slate">{fmtDate(e.createdAt, { day: "numeric", month: "short", year: "numeric", hour: "numeric", minute: "2-digit" })}</p>
+                <p className="font-display text-xl font-bold text-blue">{e.organisation}</p>
                 <p className="text-sm">{e.contactName} · <a className="underline" href={`mailto:${e.email}`}>{e.email}</a>{e.phone && <> · <a className="underline" href={`tel:${e.phone}`}>{e.phone}</a></>}</p>
                 <p className="mt-1 text-sm">{e.groupSize ? `${e.groupSize} people` : "Group size not given"}{e.preferredDate ? ` · ${e.preferredDate}` : ""}{e.interests.length ? ` · ${e.interests.join(", ")}` : ""}</p>
-                {e.message && <p className="mt-3 whitespace-pre-line rounded-2xl bg-cream p-3 text-sm">{e.message}</p>}
+                {e.message && <p className="mt-3 whitespace-pre-line rounded-2xl bg-sky p-3 text-sm">{e.message}</p>}
               </div>
               <div className="flex flex-col items-end gap-2">
                 <span className={`rounded-full px-3 py-1 font-display text-sm font-bold ${TONE[e.status]}`}>{LABEL[e.status]}</span>
@@ -34,7 +34,7 @@ export default async function Enquiries() {
             </div>
           </li>
         ))}
-        {!rows.length && <li className="sticker bg-white p-10 text-center text-moss">No enquiries yet.</li>}
+        {!rows.length && <li className="sticker bg-white p-10 text-center text-slate">No enquiries yet.</li>}
       </ul>
     </div>
   );

@@ -7,7 +7,7 @@ import { Icon } from "@/components/Icon";
 
 export const metadata = { title: "Bookings" };
 
-const STATUS = { PENDING: "bg-gold/30 text-night", CONFIRMED: "bg-olive/25 text-forest", CANCELLED: "bg-night/10 text-moss line-through" } as const;
+const STATUS = { PENDING: "bg-orange/30 text-navy", CONFIRMED: "bg-trail/25 text-blue", CANCELLED: "bg-navy/10 text-slate line-through" } as const;
 
 export default async function Bookings({ searchParams }: { searchParams: Promise<{ event?: string; status?: string; q?: string }> }) {
   const sp = await searchParams;
@@ -36,14 +36,14 @@ export default async function Bookings({ searchParams }: { searchParams: Promise
         <button className="btn btn-primary">Filter</button>
         {(sp.event || sp.status || sp.q) && <Link href="/admin/bookings" className="btn btn-ghost">Clear</Link>}
       </form>
-      <p className="text-sm text-moss">{rows.length} booking{rows.length === 1 ? "" : "s"} · {rows.filter((r) => r.b.status !== "CANCELLED").reduce((a, r) => a + r.b.participantCount, 0)} participants</p>
+      <p className="text-sm text-slate">{rows.length} booking{rows.length === 1 ? "" : "s"} · {rows.filter((r) => r.b.status !== "CANCELLED").reduce((a, r) => a + r.b.participantCount, 0)} participants</p>
       <ul className="flex flex-col gap-4">
         {rows.map(({ b, title, startsAt }) => (
           <li key={b.id} className="sticker bg-white p-5">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0">
-                <p className="font-display text-sm font-bold text-moss">{b.reference} · booked {fmtDate(b.createdAt, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</p>
-                <p className="mt-1 font-display text-xl font-bold text-forest">{b.leadName} <span className="font-sans text-base font-semibold text-night">· {b.participantCount} {b.participantCount === 1 ? "person" : "people"} · {kes(b.totalKes)}</span></p>
+                <p className="font-display text-sm font-bold text-slate">{b.reference} · booked {fmtDate(b.createdAt, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}</p>
+                <p className="mt-1 font-display text-xl font-bold text-blue">{b.leadName} <span className="font-sans text-base font-semibold text-navy">· {b.participantCount} {b.participantCount === 1 ? "person" : "people"} · {kes(b.totalKes)}</span></p>
                 <p className="text-sm"><Link href={qs({ event: b.eventId })} className="font-semibold hover:underline">{title}</Link> · {fmtDate(startsAt, { day: "numeric", month: "short" })}</p>
                 <p className="mt-1 flex flex-wrap gap-x-4 text-sm"><a className="underline" href={`mailto:${b.email}`}>{b.email}</a><a className="underline" href={`tel:${b.phone}`}>{b.phone}</a></p>
               </div>
@@ -56,10 +56,10 @@ export default async function Bookings({ searchParams }: { searchParams: Promise
                 </div>
               </div>
             </div>
-            <details className="mt-3 border-t border-night/10 pt-3 text-sm">
-              <summary className="cursor-pointer font-display font-bold text-forest">Participants &amp; consents</summary>
+            <details className="mt-3 border-t border-navy/10 pt-3 text-sm">
+              <summary className="cursor-pointer font-display font-bold text-blue">Participants &amp; consents</summary>
               <div className="mt-3 grid gap-4 sm:grid-cols-2">
-                <ul className="space-y-1">{b.participants.map((p, i) => <li key={i}>{p.name} <span className="text-moss">({p.age}{p.age < 18 ? ", minor" : ""})</span></li>)}</ul>
+                <ul className="space-y-1">{b.participants.map((p, i) => <li key={i}>{p.name} <span className="text-slate">({p.age}{p.age < 18 ? ", minor" : ""})</span></li>)}</ul>
                 <ul className="space-y-1">
                   <li>Photo consent: <b>{b.photoConsent ? "Yes" : "No"}</b></li>
                   <li>Data &amp; terms accepted: <b>{b.dataConsent && b.termsAccepted ? "Yes" : "No"}</b></li>
@@ -70,7 +70,7 @@ export default async function Bookings({ searchParams }: { searchParams: Promise
             </details>
           </li>
         ))}
-        {!rows.length && <li className="sticker bg-white p-10 text-center text-moss">No bookings match.</li>}
+        {!rows.length && <li className="sticker bg-white p-10 text-center text-slate">No bookings match.</li>}
       </ul>
     </div>
   );

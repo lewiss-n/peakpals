@@ -12,7 +12,7 @@ export function LoginForm({ next }: { next: string }) {
       <input type="hidden" name="next" value={next} />
       <div><label className="label" htmlFor="email">Email</label><input id="email" name="email" type="email" required autoComplete="username" className="field" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
       <div><label className="label" htmlFor="password">Password</label><input id="password" name="password" type="password" required autoComplete="current-password" className="field" /></div>
-      {state.message && <p role="alert" className="rounded-2xl bg-brown/10 p-3 font-semibold text-brown">{state.message}</p>}
+      {state.message && <p role="alert" className="rounded-2xl bg-ember/10 p-3 font-semibold text-ember">{state.message}</p>}
       <button className="btn btn-primary" disabled={pending}>{pending ? "Signing in…" : "Sign in"}</button>
     </form>
   );

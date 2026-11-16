@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       <div className="sticker w-full max-w-md bg-white p-8">
         <img src="/brand/peak-pals-badge-primary.svg" alt="Peak Pals Adventures" className="mx-auto w-28" />
         <h1 className="mt-6 text-center text-3xl">Base camp login</h1>
-        <p className="mt-1 text-center text-moss">Admin access for the Peak Pals team.</p>
+        <p className="mt-1 text-center text-slate">Admin access for the Peak Pals team.</p>
         <LoginForm next={next ?? ""} />
       </div>
     </div>

@@ -10,7 +10,7 @@ export default async function NewAlbum() {
     <div>
       <p className="kicker">Memories</p>
       <h1 className="mt-1 text-4xl">New album</h1>
-      <p className="mt-2 text-moss">Create the album first, then add photos and videos on the next screen.</p>
+      <p className="mt-2 text-slate">Create the album first, then add photos and videos on the next screen.</p>
       <AlbumForm events={evs.map((e) => ({ id: e.id, label: `${e.startsAt.toISOString().slice(0, 10)} · ${e.title}` }))} />
     </div>
   );

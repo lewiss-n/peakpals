@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: { type: "website", siteName: site.name, images: ["/images/trail-companions.webp"] },
 };
 
-export const viewport: Viewport = { themeColor: "#355A35" };
+export const viewport: Viewport = { themeColor: "#1B4DA0" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

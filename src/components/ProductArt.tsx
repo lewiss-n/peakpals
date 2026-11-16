@@ -13,13 +13,13 @@ export function ProductArt({ art, className = "" }: { art: string; className?: s
   const [bx, by, bw] = s.badge;
   return (
     <svg viewBox="0 0 400 400" className={className} role="img" aria-label="Product illustration">
-      <rect width="400" height="400" fill="#F7EFCA" />
-      <g fill="none" stroke="#355A35" strokeOpacity=".1" strokeWidth="2">
+      <rect width="400" height="400" fill="#EAF1FB" />
+      <g fill="none" stroke="#1B4DA0" strokeOpacity=".1" strokeWidth="2">
         {[50, 80, 110, 140, 170, 200].map((r) => <ellipse key={r} cx="300" cy="90" rx={r * 1.25} ry={r * 0.8} />)}
       </g>
-      <circle cx="320" cy="300" r="70" fill="#FFBA08" opacity=".9" />
-      <path d={s.body} fill="#355A35" stroke="#1F3320" strokeWidth="5" strokeLinejoin="round" />
-      {s.extra && <path d={s.extra} fill="none" stroke="#1F3320" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity=".55" />}
+      <circle cx="320" cy="300" r="70" fill="#FF6A00" opacity=".9" />
+      <path d={s.body} fill="#1B4DA0" stroke="#0E2348" strokeWidth="5" strokeLinejoin="round" />
+      {s.extra && <path d={s.extra} fill="none" stroke="#0E2348" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" opacity=".55" />}
       <image href="/brand/peak-pals-badge-reversed.svg" x={bx - bw / 2} y={by - bw / 2} width={bw} height={bw} />
     </svg>
   );

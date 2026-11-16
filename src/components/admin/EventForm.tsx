@@ -41,8 +41,8 @@ export function EventForm({ initial }: { initial?: V }) {
     <div>
       <label className="label" htmlFor={k}>{label}</label>
       <input id={k} name={k} type={type} className="field" value={String(v[k])} onChange={set(k)} aria-invalid={!!err[k]} {...rest} />
-      {hint && !err[k] && <p className="mt-1 text-sm text-moss">{hint}</p>}
-      {err[k] && <p className="mt-1 text-sm font-semibold text-brown">{err[k]}</p>}
+      {hint && !err[k] && <p className="mt-1 text-sm text-slate">{hint}</p>}
+      {err[k] && <p className="mt-1 text-sm font-semibold text-ember">{err[k]}</p>}
     </div>
   );
   const S = ({ k, label, options }: { k: keyof V; label: string; options: [string, string][] }) => (
@@ -86,8 +86,8 @@ export function EventForm({ initial }: { initial?: V }) {
         <div className="md:col-span-2">
           <label className="label" htmlFor="description">Full description</label>
           <textarea id="description" name="description" rows={7} className="field" value={v.description} onChange={set("description")} aria-invalid={!!err.description} />
-          <p className="mt-1 text-sm text-moss">Leave a blank line between paragraphs.</p>
-          {err.description && <p className="mt-1 text-sm font-semibold text-brown">{err.description}</p>}
+          <p className="mt-1 text-sm text-slate">Leave a blank line between paragraphs.</p>
+          {err.description && <p className="mt-1 text-sm font-semibold text-ember">{err.description}</p>}
         </div>
         <div>
           <label className="label" htmlFor="inclusions">What&apos;s included (one per line)</label>
@@ -101,18 +101,18 @@ export function EventForm({ initial }: { initial?: V }) {
 
       <section className="sticker grid gap-5 bg-white p-6 md:grid-cols-[260px_1fr]">
         <h2 className="text-2xl md:col-span-2">Cover photo</h2>
-        <div className="aspect-[16/10] overflow-hidden rounded-2xl border-2 border-night bg-cream">
-          {v.coverUrl ? <img src={v.coverUrl} alt="Cover preview" className="size-full object-cover" /> : <div className="flex size-full items-center justify-center p-4 text-center text-sm text-moss">No photo: a branded illustration is shown instead</div>}
+        <div className="aspect-[16/10] overflow-hidden rounded-2xl border-2 border-navy bg-sky">
+          {v.coverUrl ? <img src={v.coverUrl} alt="Cover preview" className="size-full object-cover" /> : <div className="flex size-full items-center justify-center p-4 text-center text-sm text-slate">No photo: a branded illustration is shown instead</div>}
         </div>
         <div className="flex flex-col justify-center gap-3">
-          <p className="text-sm text-moss">Use a real photo from a past Peak Pals event (no AI-generated images). JPG, PNG or WebP up to 25 MB. It&apos;s resized automatically.</p>
+          <p className="text-sm text-slate">Use a real photo from a past Peak Pals event (no AI-generated images). JPG, PNG or WebP up to 25 MB. It&apos;s resized automatically.</p>
           <div className="flex flex-wrap gap-2">
             <label className="btn btn-ghost cursor-pointer"><Icon name="upload" className="size-5" />{uploading ? "Uploading…" : v.coverUrl ? "Replace photo" : "Upload photo"}
               <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" className="sr-only" disabled={uploading} onChange={(e) => e.target.files?.[0] && upload(e.target.files[0])} />
             </label>
-            {v.coverUrl && <button type="button" className="btn btn-ghost text-brown" onClick={() => setV({ ...v, coverMediaId: "", coverUrl: "" })}>Remove</button>}
+            {v.coverUrl && <button type="button" className="btn btn-ghost text-ember" onClick={() => setV({ ...v, coverMediaId: "", coverUrl: "" })}>Remove</button>}
           </div>
-          {upErr && <p className="text-sm font-semibold text-brown">{upErr}</p>}
+          {upErr && <p className="text-sm font-semibold text-ember">{upErr}</p>}
         </div>
       </section>
 
@@ -121,12 +121,12 @@ export function EventForm({ initial }: { initial?: V }) {
           {F({ k: "slug", label: "Web address (optional)", hint: "Leave blank to create it from the title.", placeholder: "ngong-hills-ridge-walk" })}
         </div>
         <label className="flex items-center gap-3 font-semibold">
-          <input type="checkbox" name="published" className="size-5 accent-forest" checked={v.published} onChange={(e) => setV({ ...v, published: e.target.checked })} />
+          <input type="checkbox" name="published" className="size-5 accent-blue" checked={v.published} onChange={(e) => setV({ ...v, published: e.target.checked })} />
           Published (visible on the website and open for booking)
         </label>
       </section>
 
-      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-brown/10 p-3 font-semibold text-brown">{state.message}</p>}
+      {state.message && !state.ok && <p role="alert" className="rounded-2xl bg-ember/10 p-3 font-semibold text-ember">{state.message}</p>}
       <div className="flex gap-3">
         <button className="btn btn-primary" disabled={pending || uploading}>{pending ? "Saving…" : v.id ? "Save changes" : "Create event"}</button>
         <Link href="/admin/events" className="btn btn-ghost">Cancel</Link>
